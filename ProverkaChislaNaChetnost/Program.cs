@@ -15,11 +15,14 @@ namespace ProverkaChislaNaChetnost
             Console.WriteLine("Введите число");
             num = int.Parse(Console.ReadLine());
 
-            if (num % )
+            if (num % 2 == 1 )
             {
-
+                Console.WriteLine("Это число не является чётным");
             }
-            
+            else
+            {
+                Console.WriteLine("Это число является чётным");
+            }
         }
     }
 }
