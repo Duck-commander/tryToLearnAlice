@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProverkaChislaNaChetnost
 {
@@ -15,7 +11,7 @@ namespace ProverkaChislaNaChetnost
             Console.WriteLine("Введите число");
             num = int.Parse(Console.ReadLine());
 
-            if (num % 2 == 1 )
+            if (num % 2 == 1)
             {
                 Console.WriteLine("Это число не является чётным");
             }
