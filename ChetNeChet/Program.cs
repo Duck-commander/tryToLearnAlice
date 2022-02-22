@@ -8,15 +8,28 @@ namespace ChetNeChet
 {
     internal class Program
     {
+
+        public static double Module(double number)
+        {
+            if (number < 0)
+            {
+                number = number * -1;
+            }
+
+            return number;
+        }
+
         static void Main(string[] args)
         {
             while (true)
             {
                 Console.Clear();
 
-                int ans, number, numberIn, numberOut;
-                int chet;
-                int nechet;
+                double ans, number, numberIn, numberOut;
+                double chet;
+                double nechet;
+                double sumevennumberIn, sumevennumberOut;
+                double sumoddnumberIn, sumoddnumberOut;
 
                 Console.WriteLine("ОПРЕДЕЛЕНИЕ КОЛИЧЕСТВА ЧЕТНЫХ И НЕЧЕТНЫХ ЧИСЕЛ\n");
 
@@ -48,7 +61,9 @@ namespace ChetNeChet
 
                 Console.Clear();
 
-                number = numberOut - numberIn + 1;
+                number = numberOut - numberIn;
+
+                // number of even and odd numbers
 
                 if (numberOut % 2 == 0 && numberIn % 2 == 0)
                 {
@@ -66,12 +81,90 @@ namespace ChetNeChet
                     nechet = chet;
                 }
 
-                Console.WriteLine("Четных числел: " + chet + "\nНечетных чисел: " + nechet);
+                // summ all even & all odd num
 
-                Console.WriteLine("\nВключить вывод чисел от " + numberIn + " до " + numberOut + " ?\n" +
-                    "1. Да\n" +
-                    "2. Нет");
-                ans = int.Parse(Console.ReadLine());
+                if (numberIn < 0)
+                {
+                    if (numberIn % 2 == -1)
+                    {
+                        sumoddnumberIn = ((Module(numberIn) + 1) / 2) * ((Module(numberIn) + 1) / 2);
+                        sumevennumberIn = (Module(numberIn) - 1) * (0.5 + (Module(numberIn) - 1) / 4);
+                    }
+                    else
+                    {
+                        sumoddnumberIn = (Module(numberIn) / 2) * (Module(numberIn) / 2);
+                        sumevennumberIn = Module(numberIn) * (0.5 + Module(numberIn) / 4);
+                    }
+                }
+                else
+                {
+                    if (numberIn % 2 == 1)
+                    {
+                        sumoddnumberIn = ((numberIn - 1) / 2) * ((numberIn - 1) / 2);
+                        sumevennumberIn = (numberIn - 1) * (0.5 + (numberIn - 1) / 4);
+                    }
+                    else
+                    {
+                        sumoddnumberIn = ((numberIn) / 2) * ((numberIn) / 2);
+                        sumevennumberIn = (numberIn - 2) * (0.5 + (numberIn - 2) / 4);
+                    }
+                }
+
+                if (numberOut < 0)
+                {
+                    if (numberOut % 2 == -1)
+                    {
+                        sumoddnumberOut = ((Module(numberOut) - 1) / 2) * ((Module(numberOut) - 1) / 2);
+                        sumevennumberOut = (Module(numberOut) - 1) * (0.5 + (Module(numberOut) - 1) / 4);
+                    }
+                    else
+                    {
+                        sumoddnumberOut = ((Module(numberOut)) / 2) * ((Module(numberOut)) / 2);
+                        sumevennumberOut = (Module(numberOut) - 2) * (0.5 + (Module(numberOut) - 2) / 4);
+                    }
+                }
+                else
+                {
+                    if (numberOut % 2 == 1)
+                    {
+                        sumoddnumberOut = ((numberOut + 1) / 2) * ((numberOut + 1) / 2);
+                        sumevennumberOut = (numberOut - 1) * (0.5 + (numberOut - 1) / 4);
+                    }
+                    else
+                    {
+                        sumoddnumberOut = (numberOut / 2) * (numberOut / 2);
+                        sumevennumberOut = numberOut * (0.5 + numberOut / 4);
+                    }
+                }
+
+                while (true)
+                {
+                    Console.WriteLine("Четных числел: " + chet + "\nНечетных чисел: " + nechet);
+
+                    Console.WriteLine();
+
+                    Console.WriteLine("Сумма четных чисел: " + (sumevennumberOut - sumevennumberIn));
+                    Console.WriteLine("Сумма нечетных чисел: " + (sumoddnumberOut - sumoddnumberIn));
+
+                    try
+                    {
+                        Console.WriteLine("\nВключить вывод чисел от " + numberIn + " до " + numberOut + " ?\n" +
+                        "1. Да\n" +
+                        "2. Нет");
+                        ans = int.Parse(Console.ReadLine());
+                        break;
+                    }
+                    catch (Exception)
+                    {
+
+                        Console.WriteLine("Не, ты чего-то не понял");
+                        Console.ReadLine();
+                        Console.Clear();
+                        continue;
+                    }
+                }
+                
+                
 
                 Console.Clear();
 
@@ -84,6 +177,10 @@ namespace ChetNeChet
                         Console.WriteLine(numberIn);
                     }
 
+                }
+                else
+                {
+                    continue;
                 }
 
                 Console.ReadLine();
